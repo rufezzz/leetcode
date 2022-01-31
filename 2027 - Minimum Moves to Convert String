@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution {
+public:
+    int minimumMoves(std::string s) {
+        int n=s.size();
+        int k=0;
+        for(int i=0;i<n;i++)
+        {
+           if(s[i]=='X')
+           {
+               i+=2;
+               k++;
+           }
+        }
+        return k;
+    }
+};
+int main()
+{
+    std::string s = "abca";
+
+    Solution *solution = new Solution();
+    solution->minimumMoves(s);
+
+    delete solution;
+
+    return 0;
+}
