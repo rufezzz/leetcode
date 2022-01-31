@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution {
+public:
+    bool canThreePartsEqualSum(std::vector<int>& arr) { 
+        
+        int sum = 0; 
+        
+        for (int i : arr) 
+            sum += i; 
+        
+        if (sum % 3 != 0) { 
+            return false;
+        } 
+        
+        sum /= 3;   
+        
+        int partition = 0, currentSum = 0; 
+        
+        for (int i = 0; i < arr.size(); i++) { 
+            
+            currentSum += arr[i]; 
+            
+            if (currentSum == sum) { 
+                ++partition; 
+                currentSum = 0;
+            }
+        } 
+        
+        return partition >= 3; 
+    }
+};
+int main()
+{
+    std::vector<int> arr = {0,2,1,-6,6,-7,9,1,2,0,1};
+    int k = 1;
+    Solution *solution = new Solution();
+    solution->canThreePartsEqualSum(arr);
+
+    delete solution;
+
+    return 0;
+}
