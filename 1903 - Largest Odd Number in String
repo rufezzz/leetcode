@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+
+class Solution {
+public:
+	std::string largestOddNumber(std::string num) {
+		for(int i = num.size() - 1; i >= 0; i--){
+			if((num[i] - '0') % 2 == 1)
+            {
+				return num.substr(0, i + 1);
+			}
+		}
+		return "";
+	}
+};
+
+int main()
+{
+   std::string num = "4012";
+
+    Solution *solution = new Solution();
+    solution->largestOddNumber(num);
+
+    delete solution;
+
+    return 0;
+}
