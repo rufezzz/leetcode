@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+
+class Solution {
+public:
+    int longestPalindrome(std::string s) {
+        std::unordered_map<char,int> m;
+
+        for(int i=0;i<s.size();i++){
+            m[s[i]]++;
+        }
+        int res=0;
+        bool mid=false;
+        for(auto s:m){
+            if(s.second%2==0){
+                res+=s.second;
+            }else if(s.second%2==1){
+                mid=true;
+                res+=s.second;
+                res--;
+            }
+        }
+        if (mid == true)
+        {
+            return res + 1;
+        }
+        else
+        {
+            return res;
+        }
+    }
+};
+
+int main()
+{
+   std::string s = "abccccdd";
+
+    Solution *solution = new Solution();
+    solution->longestPalindrome(s);
+
+    delete solution;
+
+    return 0;
+}
