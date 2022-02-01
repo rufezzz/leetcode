@@ -1,1 +1,38 @@
 
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution {
+public:
+    int balancedStringSplit(std::string s) {
+        int count=0;
+        int l=0,r=0;
+        int i=0;
+        while(i<s.size()){
+            if(s[i]=='L'){
+                l++;
+                if(l==r) count++;
+                i++;
+            }else{
+                r++;
+                if(l==r) count++;
+                i++;
+            }
+        }
+        return count;
+    }
+};
+int main()
+{
+    std::string s = "RLRRLLRLRL";
+    Solution *solution = new Solution();
+    solution->balancedStringSplit(s);
+    delete solution;
+
+    return 0;
+}
