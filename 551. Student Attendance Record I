@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+
+class Solution {
+public:
+    bool checkRecord(std::string s) 
+    {
+        int l=0;
+        int a=0;
+        for(auto it:s)
+        {
+            if(it=='A')
+            {
+                a++;
+            }
+            if(it=='L')
+            {
+                l++;
+            }
+            else
+            {
+                l=0;
+            }
+            if(l>2||a>=2)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main()
+{
+   std::string s = "PPALLL";
+
+    Solution *solution = new Solution();
+    solution->checkRecord(s);
+
+    delete solution;
+
+    return 0;
+}
