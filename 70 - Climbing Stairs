@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+
+class Solution {
+public:
+int climbStairs(int n)
+{
+	int a = 1, b = 2;
+		if(n == 1)
+			return a;
+		else if(n == 2)
+			return b;
+		int c;
+		for(int i=3; i<=n; ++i)
+			c = a+b, a = b, b = c;
+		return c;
+	}
+};
+
+int main()
+{
+   int n = 2;
+
+    Solution *solution = new Solution();
+    solution->climbStairs(n);
+
+    delete solution;
+
+    return 0;
+}
