@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution {
+public:
+    int romanToInt(std::string s) {
+
+    int size=s.size();
+    int ans=0;
+    std::unordered_map<char,int>m;
+    m['I']=1;
+    m['V']=5;
+    m['X']=10;
+    m['L']=50;
+    m['C']=100;
+    m['D']=500;
+    m['M']=1000;
+    
+    ans+=m[s[size-1]];
+    
+    for(int i=size-2;i>=0;i--){
+        if(m[s[i]]<m[s[i+1]]){
+            ans-=m[s[i]];
+        }
+        else{
+            ans+=m[s[i]];
+        }
+    }
+    
+    return ans;
+}
+
+};
+
+int main()
+{
+    std::string s = s = "III";
+
+    Solution *solution = new Solution();
+    solution->romanToInt(s);
+
+    delete solution;
+
+    return 0;
+}
