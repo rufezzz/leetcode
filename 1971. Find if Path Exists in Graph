@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution {
+public:
+    
+    bool dfs(std::vector<int>adj[],std::vector<bool>&vist,int start,int destination)
+    {
+        vist[start]=true;
+        if(start==destination) return true;
+        for(auto i:adj[start])
+        {
+            if(!vist[i])
+            {
+                if(dfs(adj,vist,i,destination))
+                    return true;
+            }
+        }
+        return false;
+    }
+        
+    bool validPath(int n, std::vector<std::vector<int>>& edges, int source, int destination)
+    {
+        std::vector<int>adj[n]; 
+        std::vector<bool>vist(n,false);
+        for(auto i:edges)
+        {
+            adj[i[0]].push_back(i[1]);
+            adj[i[1]].push_back(i[0]);
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            if(i==source && vist[i]==false)
+            {
+                if(dfs(adj,vist,i,destination))
+                    return true;
+            }
+        }
+        
+    return false;
+    }
+};
+
+int main()
+{
+    int n = 3;
+    std::vector<int> edges = {{0,1},{1,2},{0,2}};
+    int source = 0; 
+    int destination = 2;
+
+    Solution *solution = new Solution();
+    solution->validPath(n, edges, source, destination);
+
+    delete solution;
+
+    return 0;
+}
