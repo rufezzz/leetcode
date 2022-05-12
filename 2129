@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+
+class Solution{
+public:
+    std::string capitalizeTitle(std::string title)
+    {
+        std::string str = "";
+        std::string end = "";
+
+        
+        
+        for ( int i = 0; i < title.length() ; i++)
+        {
+            std::string str = "";
+
+            while ( (i<title.length() ) && (title[i] != ' ') )
+            {
+                str += title[i];
+                i++;
+            }
+
+            
+
+            for (int b = 0; b < str.length(); b++)
+            {
+                str[b] = tolower(str[b]);
+            }
+
+            if (str.length()>2)
+            {
+                if(islower(str[0]))
+                {
+                    str[0] = toupper(str[0]);
+                }
+            }
+
+            if(title[i] == ' ')
+            {
+                str += title[i];
+            }
+            end += str;
+
+        }
+        return end;
+
+
+        
+    }
+};
+
+int main()
+{
+    std::string title = "ZW Cl pyR uoC";
+
+    Solution *solution = new Solution();
+    solution->capitalizeTitle(title);
+
+    std::string min = solution->capitalizeTitle(title);
+    std::cout<<min;
+
+    delete solution;
+
+    return 0;
+}
